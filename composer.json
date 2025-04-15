@@ -1,0 +1,22 @@
+{
+  "name": "pba/module-healthcheck",
+  "description": "Modulo Monitoramento de Parada de Crons com integracao Uptime Robot 2.4.x",
+  "type": "magento2-module",
+  "license": "OSL-3.0",
+  "authors": [
+      {
+          "name": "Micah Guelles",
+          "email": "ter.miqueias.neiva@portobelloamerica.com"
+      }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+      "files": [
+          "registration.php"
+      ],
+      "psr-4": {
+          "PBA\\HealthCheck\\": ""
+      }
+  }
+}
