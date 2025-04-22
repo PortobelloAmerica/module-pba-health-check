@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <!-- Remove colunas laterais -->
+        <referenceContainer name="columns.top" remove="true" />
+        <referenceContainer name="columns.bottom" remove="true" />
+        <referenceContainer name="sidebar.main" remove="true" />
+        <referenceContainer name="sidebar.additional" remove="true" />
+        <referenceContainer name="footer" remove="true" />
+        
+        <!-- Adicionar bloco do conteúdo da página -->
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="healthcheck.view" template="PBA_HealthCheck::healthcheck.phtml" />
+        </referenceContainer>
+    </body>
+</page>

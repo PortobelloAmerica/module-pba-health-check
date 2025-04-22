@@ -87,7 +87,7 @@ class HealthCheck extends Action
 
             // Caso não haja cache, realizar a verificação
             $collection = $this->scheduleCollectionFactory->create();
-            $collection->addFieldToFilter('status', ['neq' => 'success']); // Status diferente de 'success'
+            $collection->addFieldToFilter('status', ['in' => ['error', 'missed']]); // Filtrar apenas os status ERROR e MISSED
             $collection->addFieldToFilter('scheduled_at', ['lt' => date('Y-m-d H:i:s', strtotime('-5 minutes'))]);
 
             $problematicCrons = [];

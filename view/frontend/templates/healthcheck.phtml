@@ -1,0 +1,51 @@
+<div id="healthcheck-interface" style="font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ccc; border-radius: 5px; max-width: 800px; margin: auto;">
+    <h1 style="color: #333;">Status dos Crons</h1>
+    <div id="healthcheck-results" style="margin-top: 20px;">
+        <p>Carregando informações...</p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const resultsContainer = document.getElementById('healthcheck-results');
+
+        fetch('/healthcheck/index/healthcheck')
+            .then(response => response.json())
+            .then(data => {
+                resultsContainer.innerHTML = '';
+
+                if (data.status === 'error') {
+                    resultsContainer.innerHTML = `
+                        <div style="color: red; border: 1px solid red; padding: 10px; border-radius: 5px;">
+                            <h2 style="margin: 0 0 10px;">Erro nos Crons</h2>
+                            <ul style="list-style: none; padding: 0;">
+                                ${data.cron_details.map(cron => `
+                                    <li style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                                        <strong>Job Code:</strong> ${cron.job_code}<br>
+                                        <strong>Status:</strong> ${cron.status}<br>
+                                        <strong>Agendado para:</strong> ${cron.scheduled_at}<br>
+                                        <strong>Executado em:</strong> ${cron.executed_at || 'N/A'}<br>
+                                        <strong>Finalizado em:</strong> ${cron.finished_at || 'N/A'}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    `;
+                } else {
+                    resultsContainer.innerHTML = `
+                        <div style="color: green; border: 1px solid green; padding: 10px; border-radius: 5px;">
+                            <h2 style="margin: 0;">Todos os crons estão funcionando corretamente.</h2>
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao buscar os dados:', error);
+                resultsContainer.innerHTML = `
+                    <div style="color: red; border: 1px solid red; padding: 10px; border-radius: 5px;">
+                        <p>Erro ao carregar os dados. Por favor, tente novamente mais tarde.</p>
+                    </div>
+                `;
+            });
+    });
+</script>
