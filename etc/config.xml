@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Framework:etc/config.xsd">
+    <default>
+        <healthcheck>
+            <general_settings>
+                <enabled>1</enabled>
+                <cache_lifetime>3000</cache_lifetime>
+                <enable_ip_restriction>0</enable_ip_restriction>
+                <allowed_ips>127.0.0.1</allowed_ips>
+            </general_settings>
+        </healthcheck>
+    </default>
+</config>

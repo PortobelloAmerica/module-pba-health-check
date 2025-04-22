@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/system_file.xsd">
+    <system>
+        <section id="healthcheck" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Health Check</label>
+            <tab>general</tab>
+            <resource>PBA_HealthCheck::config</resource>
+            <group id="general_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Health Check</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable the Health Check module.</comment>
+                </field>
+
+                <field id="cache_lifetime" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Cache Lifetime (seconds)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Set the cache duration for the Health Check results (in seconds).</comment>
+                </field>
+
+                <!-- Enable or Disable IP Restriction -->
+                <field id="enable_ip_restriction" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable IP Restriction</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable or disable IP-based access restriction.</comment>
+                </field>
+
+                <field id="allowed_ips" translate="label" sortOrder="30" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed IPs</label>
+                    <comment>Comma-separated list of IPs allowed to access the Health Check endpoint.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
